@@ -29,3 +29,13 @@ def get_latest_id(model_name,field_name):
     else:
         latest_id = None
     return latest_id
+
+def send_email(subject, message, to_id):
+    send_mail(
+    subject=subject,
+    message=None,
+    from_email="noreply.test.issuetracker@gmail.com",
+    recipient_list=[to_id],
+    fail_silently=False,
+    html_message=message,
+)

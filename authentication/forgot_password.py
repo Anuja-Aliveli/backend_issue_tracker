@@ -7,15 +7,14 @@ from authentication.authserializer import UserAuthenticationSerializer
 from common.constants import EMAIL, PASSWORD, VERIFICATION_CODE_TEXT
 from django.utils.crypto import get_random_string
 
-from communication.email import gmail_send_message
+from common.utils import send_email
 from communication.email_template import get_verification_code_message
 
-def send_email_forgot_password(user_name, email):
-    verification_code = get_random_string(length=6, allowed_chars='1234567890')
+def send_email_forgot_password(user_name, email, verification_code):
     subject = VERIFICATION_CODE_TEXT
     message = get_verification_code_message(user_name, verification_code)
     to_user = email
-    gmail_send_message(message, subject,to_user )
+    send_email(subject, message, to_user)
 
 
 @api_view(['GET'])
@@ -24,8 +23,9 @@ def check_email(request):
     try:
         user = UserAuthentication.objects.filter(email=email).get()
         if user:
-            # send_email_forgot_password(user.user_name, user.email)
-            return JsonResponse({'user_email_found': True}, status=status.HTTP_200_OK)
+            verification_code = get_random_string(length=6, allowed_chars='1234567890')
+            send_email_forgot_password(user.user_name, user.email, verification_code)
+            return JsonResponse({'user_email_found': True, 'verification_code': verification_code}, status=status.HTTP_200_OK)
         else:
             return JsonResponse({'user_email_found': False}, status=status.HTTP_404_NOT_FOUND)
     except UserAuthentication.DoesNotExist:
