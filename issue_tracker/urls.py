@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from authentication.forgot_password import forgot_login_password, reset_forgot_password
+from authentication.forgot_password import check_email, reset_forgot_password
 from authentication.login import user_login
 from authentication.registration import user_registration
 
@@ -26,6 +26,6 @@ urlpatterns = [
     path('register/', user_registration),
     path('login/', user_login),
     # Forgot Password APIS
-    path('forgot_password_check_email/', forgot_login_password),
+    path('check_email/', check_email),
     path('reset_user_password/', reset_forgot_password)
 ]

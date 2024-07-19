@@ -1,5 +1,7 @@
 import os
 from django.db import connection
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Return All the Model fields
 def get_model_fields(model_class):

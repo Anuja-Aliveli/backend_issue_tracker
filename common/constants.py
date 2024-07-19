@@ -23,7 +23,7 @@ JWT_INVALID_TOKEN = 'Invalid Token'
 JWT_TOKEN_EXPIRED = 'Token Expired'
 JWT_TOKEN_REQUIRED = 'Token Required'
 # Urls without token
-TOKEN_NOT_REQUIRED_FOR_URLS = ['/register/', '/login/', '/forgot_password_check_email/', '/reset_user_password/', '/admin/']
+TOKEN_NOT_REQUIRED_FOR_URLS = ['/register/', '/login/', '/check_email/', '/reset_user_password/', '/admin/']
 # ID CONSTANTS
 USER_ID = 'USR'
 PROFILE_ID = "PRF"
@@ -40,3 +40,7 @@ USER_REGISTER_SUCCESSFUL = 'User registered successfully'
 EMAIL = 'email'
 PASSWORD = 'password'
 USER_NAME = 'user_name'
+# App name
+ISSUE_TRACKER = 'Issue Tracker'
+# Email Subjects
+VERIFICATION_CODE_TEXT = 'Your Verification Code for Password Reset'
