@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
 from authentication.authmodel import UserAuthentication
 from authentication.authserializer import UserAuthenticationSerializer
-from common.constants import EMAIL, PASSWORD, VERIFICATION_CODE_TEXT
+from common.constants import EMAIL, LOGIN_USER_DOES_NOT_EXISTS, PASSWORD, VERIFICATION_CODE_TEXT
 from django.utils.crypto import get_random_string
 
 from common.utils import send_email
@@ -27,9 +27,9 @@ def check_email(request):
             send_email_forgot_password(user.user_name, user.email, verification_code)
             return JsonResponse({'user_email_found': True, 'verification_code': verification_code}, status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'user_email_found': False}, status=status.HTTP_404_NOT_FOUND)
+            return JsonResponse({'user_email_found': False, 'error': LOGIN_USER_DOES_NOT_EXISTS}, status=status.HTTP_404_NOT_FOUND)
     except UserAuthentication.DoesNotExist:
-        return JsonResponse({'user_email_found': False}, status=status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'user_email_found': False, 'error': LOGIN_USER_DOES_NOT_EXISTS}, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['POST'])
