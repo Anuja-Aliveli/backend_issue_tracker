@@ -1,3 +1,4 @@
+import threading
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.http import JsonResponse
@@ -24,7 +25,11 @@ def check_email(request):
         user = UserAuthentication.objects.filter(email=email).get()
         if user:
             verification_code = get_random_string(length=6, allowed_chars='1234567890')
-            send_email_forgot_password(user.user_name, user.email, verification_code)
+            email_thread = threading.Thread(
+                target=send_email_forgot_password,
+                args=(user.user_name, user.email, verification_code)
+            )
+            email_thread.start()
             return JsonResponse({'user_email_found': True, 'verification_code': verification_code}, status=status.HTTP_200_OK)
         else:
             return JsonResponse({'user_email_found': False, 'error': LOGIN_USER_DOES_NOT_EXISTS}, status=status.HTTP_404_NOT_FOUND)
