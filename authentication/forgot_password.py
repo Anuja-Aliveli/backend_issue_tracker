@@ -46,7 +46,7 @@ def reset_forgot_password(request):
         else:
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except UserAuthentication.DoesNotExist:
-        return JsonResponse({'user_email_found': False}, status=status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'error': LOGIN_USER_DOES_NOT_EXISTS}, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(["GET"])
 def test_jwt_verfication_api(request):

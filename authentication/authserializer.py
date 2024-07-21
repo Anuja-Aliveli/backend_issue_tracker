@@ -8,5 +8,6 @@ class UserAuthenticationSerializer(serializers.ModelSerializer):
         fields = get_model_fields(UserAuthentication)
         extra_kwargs = {
             'user_id': {'required': False},
-            'email': {'required': False}
+            'email': {'required': False},
+            'user_name': {'required': False} 
         }
