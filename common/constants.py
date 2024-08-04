@@ -26,8 +26,7 @@ JWT_TOKEN_REQUIRED = 'Token Required'
 TOKEN_NOT_REQUIRED_FOR_URLS = ['/register/', '/login/', '/check_email/', '/reset_user_password/', '/admin/']
 # ID CONSTANTS
 USER_ID = 'USR'
-PROFILE_ID = "PRF"
-USER_EXAM_ID = "UEX"
+PROJECT_ID = "PRJ"
 # Profile Validations
 PROFILE_CREATION_SUCCESSFUL = 'Profile Created Successfully'
 PROFILE_CREATION_FAILED = 'Profile Creation Failed'
@@ -40,7 +39,28 @@ USER_REGISTER_SUCCESSFUL = 'User registered successfully'
 EMAIL = 'email'
 PASSWORD = 'password'
 USER_NAME = 'user_name'
+PROJECT_ID_FULL = 'project_id'
 # App name
 ISSUE_TRACKER = 'Issue Tracker'
 # Email Subjects
 VERIFICATION_CODE_TEXT = 'Your Verification Code for Password Reset'
+
+#Create project
+PROJECT_STATUS = [
+    ('planning', 'Planning'),
+    ('in-progress', 'In-Progress'),
+    ('completed', 'Completed'),
+    ('closed', 'Closed')
+]
+
+PROJECT_TYPE_CHOICES = [
+        ('organization', 'Organization'),
+        ('personal', 'Personal'),
+    ]
+
+PROJECT_CREATED_SUCCESSFULLY = 'Project created successfully'
+PROJECT_CREATION_FAILED = 'Project creation failed'
+PROJECT_ALREADY_EXISTS = 'A project with this name already exists.'
+PROJECT_ID_REQUIRED = 'Project ID is required'
+PROJECT_NOT_FOUND = 'Project not found'
+PROJECT_UPDATED_SUCCESSFULLY = 'Project updated successfully'
