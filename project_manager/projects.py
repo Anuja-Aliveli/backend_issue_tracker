@@ -10,6 +10,7 @@ from project_manager.projects_serializer import ProjectManagerSerializer
 @api_view(['POST'])
 def create_project(request):
     project_details = request.data
+    project_details['user'] = request.user_id
     try:
         project_name = project_details.get('project_name')
         if ProjectManager.objects.filter(project_name=project_name).exists():
@@ -19,6 +20,7 @@ def create_project(request):
             )
         latest_project = get_latest_id(ProjectManager, ct.PROJECT_ID_FULL)
         project_details[ct.PROJECT_ID_FULL] = generate_id(ct.PROJECT_ID, latest_project)
+        print(project_details)
         serializer = ProjectManagerSerializer(data=project_details)
         if serializer.is_valid():  
             serializer.save()

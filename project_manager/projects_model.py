@@ -1,4 +1,5 @@
 from django.db import models
+from authentication.authmodel import UserAuthentication
 from common.utils import get_model_fields
 from common import constants as ct
 
@@ -18,6 +19,7 @@ class ProjectManager(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    user = models.ForeignKey(UserAuthentication, on_delete=models.CASCADE,related_name='user_projects')     
+    
     class Meta:
         db_table = "project_manager"

@@ -40,6 +40,7 @@ EMAIL = 'email'
 PASSWORD = 'password'
 USER_NAME = 'user_name'
 PROJECT_ID_FULL = 'project_id'
+USER_ID_FULL = 'user_id'
 # App name
 ISSUE_TRACKER = 'Issue Tracker'
 # Email Subjects
