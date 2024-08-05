@@ -13,7 +13,7 @@ def create_project(request):
     project_details['user'] = request.user_id
     try:
         project_name = project_details.get('project_name')
-        if ProjectManager.objects.filter(project_name=project_name).exists():
+        if ProjectManager.objects.filter(project_name=project_name, user_id=project_details['user']).exists():
             return JsonResponse(
                 {'error': ct.PROJECT_ALREADY_EXISTS},
                 status=status.HTTP_400_BAD_REQUEST
