@@ -20,7 +20,8 @@ from django.urls import path
 from authentication.forgot_password import check_email, reset_forgot_password
 from authentication.login import user_login
 from authentication.registration import user_registration
-from project_manager.projects import create_project, get_project_details, update_project_details
+from project_manager.create_project import create_project, get_project_details, update_project_details
+from project_manager.projects import get_project_cards_data, get_projects_table_data
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +32,8 @@ urlpatterns = [
     path('reset_user_password/', reset_forgot_password),
     # Project APIS 
     path('create_project/', create_project),
-    path('projects/', get_project_details),
-    path('update_project', update_project_details)
+    path('get_project/', get_project_details),
+    path('update_project', update_project_details),
+    path('projects/', get_projects_table_data),
+    path('projects_cards/', get_project_cards_data)
 ]

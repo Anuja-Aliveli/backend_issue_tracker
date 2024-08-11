@@ -69,11 +69,11 @@ def user_registration(request):
         is_valid_email = validate_user_email(email)
         is_valid_password = validate_password(password)
         if is_valid_email and is_valid_password:
-            latest_user = get_latest_id(UserAuthentication, 'user_id')
+            latest_user = get_latest_id(UserAuthentication, ct.USER_ID)
             user_data = {
                 'email': email,
                 'password': make_password(password),
-                'user_id': generate_id(ct.USER_ID,latest_user),
+                'user_id': generate_id(ct.USR,latest_user),
                 'user_name': user_name
             }
             serializer = UserAuthenticationSerializer(data=user_data)

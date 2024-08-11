@@ -17,7 +17,7 @@ def user_login(request):
             is_correct_password = check_password(password, user.password)
             if is_correct_password:
                 # Generate JWT token
-                payload = {'user_id': user.user_id}  # Customize payload as needed
+                payload = {ct.USER_ID: user.user_id}  # Customize payload as needed
                 jwt_token = jwt.encode(payload, settings.JWT_SECRET_KEY, algorithm='HS256')
                 return JsonResponse({'message': ct.USER_LOGIN_SUCCESSFUL, 'token': jwt_token, 'user_name': user.user_name, 'email': user.email}, status=status.HTTP_200_OK)
             else:

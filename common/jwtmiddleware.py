@@ -23,7 +23,7 @@ class JWTMiddleware:
                     # Verify JWT token
                     payload = jwt.decode(jwt_token, settings.JWT_SECRET_KEY, algorithms=['HS256'])
                     print(payload)
-                    user_id = payload.get('user_id')
+                    user_id = payload.get(ct.USER_ID)
                     request.user_id = user_id
                     # Token is valid, allow the request to proceed
                     return self.get_response(request)

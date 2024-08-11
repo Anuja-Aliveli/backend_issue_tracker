@@ -25,8 +25,8 @@ JWT_TOKEN_REQUIRED = 'Token Required'
 # Urls without token
 TOKEN_NOT_REQUIRED_FOR_URLS = ['/register/', '/login/', '/check_email/', '/reset_user_password/', '/admin/']
 # ID CONSTANTS
-USER_ID = 'USR'
-PROJECT_ID = "PRJ"
+USR = 'USR'
+PRJ = "PRJ"
 # Profile Validations
 PROFILE_CREATION_SUCCESSFUL = 'Profile Created Successfully'
 PROFILE_CREATION_FAILED = 'Profile Creation Failed'
@@ -39,8 +39,8 @@ USER_REGISTER_SUCCESSFUL = 'User registered successfully'
 EMAIL = 'email'
 PASSWORD = 'password'
 USER_NAME = 'user_name'
-PROJECT_ID_FULL = 'project_id'
-USER_ID_FULL = 'user_id'
+PROJECT_ID = 'project_id'
+USER_ID = 'user_id'
 # App name
 ISSUE_TRACKER = 'Issue Tracker'
 # Email Subjects
@@ -65,3 +65,10 @@ PROJECT_ALREADY_EXISTS = 'A project with this name already exists.'
 PROJECT_ID_REQUIRED = 'Project ID is required'
 PROJECT_NOT_FOUND = 'Project not found'
 PROJECT_UPDATED_SUCCESSFULLY = 'Project updated successfully'
+
+PLANNING = 'planning'
+IN_PROGRESS = 'in-progress'
+COMPLETED = 'completed'
+CLOSED = 'closed'
+PERSONAL = 'personal'
+ORGANIZATION = 'organization'
