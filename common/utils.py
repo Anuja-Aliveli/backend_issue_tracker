@@ -4,6 +4,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from collections import defaultdict
 import bisect
+from common import constants as ct
+
 
 # Return All the Model fields
 def get_model_fields(model_class):
@@ -143,3 +145,16 @@ def apply_search_sort_filter_pagination(list_data, filters='{}',search_input='',
     list_data = custom_sort(list_data, key=sort_by, reverse=reverse)
     list_data = get_paginated_data(list_data, page, limit)
     return list_data
+
+def get_count_data(count_db_data):
+    result = []
+    for index, (status, count) in enumerate(count_db_data.items()):
+        color_mapping = ct.COLOR_MAPPINGS[index]
+        temp_dict = {
+            ct.LABEL: status.replace("_", " ").title(), 
+            ct.COUNT: count,
+            ct.COLOR: color_mapping["color"],
+            ct.BG: color_mapping['bg'],
+        }
+        result.append(temp_dict)
+    return result

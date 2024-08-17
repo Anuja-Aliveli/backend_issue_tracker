@@ -19,7 +19,7 @@ def create_project(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
         latest_project = get_latest_id(ProjectManager, ct.PROJECT_ID)
-        project_details[ct.PROJECT_ID] = generate_id(ct.PROJECT_ID, latest_project)
+        project_details[ct.PROJECT_ID] = generate_id(ct.PRJ, latest_project)
         print(project_details)
         serializer = ProjectManagerSerializer(data=project_details)
         if serializer.is_valid():  

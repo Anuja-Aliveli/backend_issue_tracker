@@ -50,6 +50,7 @@ VERIFICATION_CODE_TEXT = 'Your Verification Code for Password Reset'
 PROJECT_STATUS = [
     ('planning', 'Planning'),
     ('in-progress', 'In-Progress'),
+    ('paused', 'Paused'),
     ('completed', 'Completed'),
     ('closed', 'Closed')
 ]
@@ -72,3 +73,20 @@ COMPLETED = 'completed'
 CLOSED = 'closed'
 PERSONAL = 'personal'
 ORGANIZATION = 'organization'
+
+LABEL = 'label'
+VALUE = 'value'
+BG = 'bg'
+COLOR = 'color'
+COUNT = 'count'
+ROUTE_LINK = 'route_link'
+
+# Color Mapping
+COLOR_MAPPINGS = [
+    {"bg": "#ffebc6", "color": "#ff4500"},
+    {"bg": "#bff1e9", "color": "#1aa3ea"},  
+    {"bg": "#fffbb6", "color": "#ffce0f"},
+    {"bg": "#ccffcc", "color": "#12aa18"},
+    {"bg": "#ffcbcb", "color": "#ff172b"},
+    {"bg": "#ccccf2", "color": "#8a2be2"},      
+]
