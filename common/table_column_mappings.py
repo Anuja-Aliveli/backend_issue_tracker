@@ -1,3 +1,4 @@
+# Projects list column 
 PROJECT_COLUMNS_MAPPING = [
     {'label': 'Project ID',
      'fieldname': 'project_id',
@@ -18,3 +19,22 @@ PROJECT_COLUMNS_MAPPING = [
      'fieldname': 'updated_at',
      'fieldtype': 'dateTime'},
 ]
+
+# Projects list action mapping
+PROJECTS_ACTION_OPTIONS = [
+    {
+      'actId': 0,
+      'label': 'Edit',
+      'value': 'edit',
+    },
+    {
+      'actId': 1,
+      'label': 'Delete',
+      'value': 'delete',
+    },
+    {
+      'actId': 2,
+      'label': 'View',
+      'value': 'view',
+    },
+  ]

@@ -5,6 +5,7 @@ from common import constants as ct
 
 class ProjectManager(models.Model):
     project_id = models.CharField(max_length=ct.CHAR_MEDIUM_LIMIT, primary_key=True)
+    owner = models.CharField(max_length=ct.CHAR_MEDIUM_LIMIT,null=True, blank=True)
     project_name = models.CharField(max_length=ct.CHAR_MEDIUM_LIMIT)
     project_description = models.CharField(max_length=ct.CHAR_VERY_LONG_LIMIT)
     start_date = models.DateTimeField(null=True, blank=True)

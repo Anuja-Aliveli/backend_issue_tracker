@@ -54,11 +54,15 @@ def get_paginated_data(data, page = 1, limit = 10):
 # Perform Search on list of dictionaries using inverted index
 def build_inverted_index(list_data):
     inverted_index = defaultdict(set)
-    for idx, project in enumerate(list_data):
-        for value in project.values():
-            words = str(value).lower().split()
-            for word in words:
-                inverted_index[word].add(idx)
+    
+    for i, item in enumerate(list_data):
+        for key, value in item.items():
+            if isinstance(value, str):
+                words = value.lower().split()
+                for word in words:
+                    for j in range(1, len(word) + 1):  # Store all prefixes of the word
+                        inverted_index[word[:j]].add(i)
+    
     return inverted_index
 
 def get_search_results(search_input, list_data):
@@ -68,10 +72,15 @@ def get_search_results(search_input, list_data):
     if not search_words:
         return []
 
-    result_indices = set(inverted_index[search_words[0]])
-    for word in search_words[1:]:
-        result_indices &= inverted_index[word]
-
+    result_indices = set()
+    for word in search_words:
+        if word in inverted_index:
+            if not result_indices:
+                result_indices = inverted_index[word]
+            else:
+                result_indices &= inverted_index[word]
+        else:
+            return []
     search_results = [list_data[i] for i in result_indices]
     return search_results
 

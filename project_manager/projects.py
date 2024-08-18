@@ -1,7 +1,7 @@
 import json
 from django.http import JsonResponse
 from rest_framework import status
-from common.table_column_mappings import PROJECT_COLUMNS_MAPPING
+from common.table_column_mappings import PROJECT_COLUMNS_MAPPING, PROJECTS_ACTION_OPTIONS
 from common.utils import apply_filters, apply_search_sort_filter_pagination, custom_sort, get_count_data, get_paginated_data, get_search_results
 from project_manager.projects_model import ProjectManager
 from project_manager.projects_serializer import ProjectManagerSerializer
@@ -33,9 +33,10 @@ def get_project_cards_data(request):
         
 def attach_projects_route_link(projects_list):
     result = []
-    for item in projects_list:
+    for index,item in enumerate(projects_list):
+        item['rowId'] = index
         item[ct.ROUTE_LINK] = {
-            item['project_id']: f'/projects/{item['project_id']}'
+            item['project_id']: f'/projects/edit/{item['project_id']}'
         }
         result.append(item)
     return result
@@ -56,11 +57,13 @@ def get_projects_table_data(request):
         project_details = ProjectManagerSerializer(project_details, many=True).data
         total_count = len(project_details)
         result = apply_search_sort_filter_pagination(project_details, filters,search_input,sort_param,page,limit)
-        attach_route_link = attach_projects_route_link(result)
+        result = attach_projects_route_link(result)
         column_data = PROJECT_COLUMNS_MAPPING
+        action_options = PROJECTS_ACTION_OPTIONS
         response_data = {
             'column_data': column_data,
             'project_list': result,
+            'action_options': action_options,
             'total_count': total_count,
         }
         return JsonResponse({'data': response_data, }, status=status.HTTP_200_OK)

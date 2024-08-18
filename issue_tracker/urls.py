@@ -33,7 +33,7 @@ urlpatterns = [
     # Project APIS 
     path('create_project/', create_project),
     path('get_project/', get_project_details),
-    path('update_project', update_project_details),
+    path('update_project/', update_project_details),
     path('projects/', get_projects_table_data),
     path('projects_cards/', get_project_cards_data)
 ]
