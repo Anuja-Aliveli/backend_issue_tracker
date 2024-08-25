@@ -29,12 +29,12 @@ PROJECTS_ACTION_OPTIONS = [
     },
     {
       'actId': 1,
-      'label': 'Delete',
-      'value': 'delete',
+      'label': 'View',
+      'value': 'view',
     },
     {
       'actId': 2,
-      'label': 'View',
-      'value': 'view',
+      'label': 'Close',
+      'value': 'close',
     },
   ]

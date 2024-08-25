@@ -27,28 +27,31 @@ def get_project_cards_data(request):
             organization=Count(ct.PROJECT_ID, filter=Q(project_status=ct.ORGANIZATION))
         )
         count_data = get_count_data(count_db_data)
-        return JsonResponse({'data': count_data, }, status=status.HTTP_200_OK)
+        return JsonResponse({ct.DATA: count_data, }, status=status.HTTP_200_OK)
     except Exception as error:
-        return JsonResponse({'error': str(error)}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({ct.ERROR: str(error)}, status=status.HTTP_400_BAD_REQUEST)
         
 def attach_projects_route_link(projects_list):
     result = []
-    for index,item in enumerate(projects_list):
+    for index, item in enumerate(projects_list):
         item['rowId'] = index
         item[ct.ROUTE_LINK] = {
-            item['project_id']: f'/projects/edit/{item['project_id']}'
+            str(ct.PROJECT_ID): f"/projects/edit/{item[ct.PROJECT_ID]}"
         }
+        if item[ct.PROJECT_STATUS_TEXT] != ct.CLOSED:
+            item[ct.ACTION_OPTIONS] = PROJECTS_ACTION_OPTIONS
+        else:
+            item[ct.ACTION_OPTIONS] = PROJECTS_ACTION_OPTIONS[:-1]
         result.append(item)
     return result
-
         
 @api_view(['GET'])
 def get_projects_table_data(request):
-    page = request.query_params.get('page', '1')
-    limit = request.query_params.get('limit', '10')
-    search_input = request.query_params.get('search_input', '')
-    sort_param = request.query_params.get('sort', 'created_at desc')
-    filters = request.query_params.get('filters', '{}')
+    page = request.query_params.get(ct.PAGE, '1')
+    limit = request.query_params.get(ct.LIMIT, '10')
+    search_input = request.query_params.get(ct.SEARCH_INPUT, '')
+    sort_param = request.query_params.get(ct.SORT, 'created_at desc')
+    filters = request.query_params.get(ct.FILTERS, '{}')
     filters = json.loads(filters)
     user_id = request.user_id
     total_count = 0
@@ -59,13 +62,11 @@ def get_projects_table_data(request):
         result = apply_search_sort_filter_pagination(project_details, filters,search_input,sort_param,page,limit)
         result = attach_projects_route_link(result)
         column_data = PROJECT_COLUMNS_MAPPING
-        action_options = PROJECTS_ACTION_OPTIONS
         response_data = {
             'column_data': column_data,
             'project_list': result,
-            'action_options': action_options,
             'total_count': total_count,
         }
-        return JsonResponse({'data': response_data, }, status=status.HTTP_200_OK)
+        return JsonResponse({ct.DATA: response_data, }, status=status.HTTP_200_OK)
     except Exception as error:
-        return JsonResponse({'error': str(error)}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({ct.ERROR: str(error)}, status=status.HTTP_400_BAD_REQUEST)

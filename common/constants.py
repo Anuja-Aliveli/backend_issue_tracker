@@ -39,14 +39,22 @@ USER_REGISTER_SUCCESSFUL = 'User registered successfully'
 EMAIL = 'email'
 PASSWORD = 'password'
 USER_NAME = 'user_name'
-PROJECT_ID = 'project_id'
 USER_ID = 'user_id'
+USER = 'user'
 # App name
 ISSUE_TRACKER = 'Issue Tracker'
 # Email Subjects
 VERIFICATION_CODE_TEXT = 'Your Verification Code for Password Reset'
 
-#Create project
+# API Response
+DATA = 'data'
+ERROR = 'error',
+MESSAGE = 'message'
+
+# Project
+PROJECT_ID = 'project_id'
+PROJECT_STATUS_TEXT = 'project_status'
+PROJECT_NAME = 'project_name'
 PROJECT_STATUS = [
     ('planning', 'Planning'),
     ('in-progress', 'In-Progress'),
@@ -80,6 +88,13 @@ BG = 'bg'
 COLOR = 'color'
 COUNT = 'count'
 ROUTE_LINK = 'route_link'
+ACTION_OPTIONS = 'action_options'
+PAGE = 'page'
+LIMIT = 'limit'
+SEARCH_INPUT = 'search_input'
+SORT = 'sort'
+FILTERS = 'filters'
+
 
 # Color Mapping
 COLOR_MAPPINGS = [
