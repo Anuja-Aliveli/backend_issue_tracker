@@ -36,7 +36,8 @@ def attach_projects_route_link(projects_list):
     for index, item in enumerate(projects_list):
         item['rowId'] = index
         item[ct.ROUTE_LINK] = {
-            str(ct.PROJECT_ID): f"/projects/edit/{item[ct.PROJECT_ID]}"
+            str(ct.PROJECT_ID): f"/projects/view/{item[ct.PROJECT_ID]}",
+            'edit_project': f"/projects/edit/{item[ct.PROJECT_ID]}"
         }
         if item[ct.PROJECT_STATUS_TEXT] != ct.CLOSED:
             item[ct.ACTION_OPTIONS] = PROJECTS_ACTION_OPTIONS
